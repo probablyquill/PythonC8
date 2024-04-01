@@ -17,5 +17,5 @@ With the rom file set, and the rom placed in the same directory as the run.py fi
 python3 ./run.py
 ```
 
-##Licence
+## Licence
 All code is provided as-is and is licensed under the [MIT](https://choosealicense.com/licenses/mit/) license.
