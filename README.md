@@ -1,18 +1,18 @@
 # PythonC8
 Quick and dirty Chip-8 Emulator written in python and using pygame.
 
-Currently also includes a numpy dependency but I would like to cut that out.
+Requires python version 3.10 or higher due to the use of match (switch statements).
 
 ## Install guide:
-Install the required packages using tthe following command:
+I really wouldn't recommend running this, but if you want to, the only required package is pygame.
 ```bash
-pip3 install pygame, numpy -y
+pip3 install pygame
 ```
 
 ## Launch:
 The location of the rom file can be set on line 18 of the run.py file.
 
-With the rom file set, and the rom placed in the same directory as the run.py fil, launch the emulator using the following commant.
+With the rom file set, and the rom placed in the same directory as the run.py file, launch the emulator using the following commant.
 ```bash
 python3 ./run.py
 ```

@@ -15,7 +15,7 @@ Memory Map:
 """
 
 #Load rom
-rom_path = Path("Brix [Andreas Gustafsson, 1990].ch8")
+rom_path = Path("1-chip8-logo.ch8")
 rom = ""
 
 with open(rom_path, "rb") as f:
@@ -39,13 +39,12 @@ white = (255, 255, 255)
 black = (0,0,0)
 
 def pygame_display(array):
-    array = np.reshape(array, (32,64))
     pixel_array = pygame.PixelArray(w)
     color = white
 
     for y in range(32):
         for x in range(64):
-            if (array[y][x] == 1):
+            if (array[x + (y * 64)] == 1):
                 color = white
             else:
                 color = black
