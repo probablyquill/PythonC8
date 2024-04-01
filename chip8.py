@@ -76,7 +76,6 @@ class Chip8:
         self.opcode = (int(self.memory[self.pc]) << 8) | int(self.memory[self.pc + 1])
         #print(f"Starting: I = {self.I} PC = {self.pc}")
         #print(f"Loaded opcode: {hex(self.opcode)}")
-        #print(f"Opcode: {hex(self.opcode)}")
         #Decode Opcode
 
         #This website was incredibly useful.

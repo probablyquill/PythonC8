@@ -40,6 +40,9 @@ black = (0,0,0)
 #for the screen to be updated. This is not particuarly efficient
 #as really only new information need to be drawn, but it's a 
 #64x32 display so it doesn't really matter.
+
+#This is also where pretty much any performace gain would need to
+#happen - all CPU instructions take ~1ms to execute.
 def pygame_display(array):
     pixel_array = pygame.PixelArray(w)
     color = white
@@ -98,7 +101,8 @@ while running:
     now = time.time()
     delta = (now - then) 
 
-    if (delta > 0.0018):
+    #Delta of 0.0018 because the target is 540 cycles / second or one cycle ever 1.8ms / 0.0018ms.
+    if (delta >= 0.0018):
         then = time.time()
         chip8.emulateCycle()
 
