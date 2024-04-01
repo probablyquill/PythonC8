@@ -1,6 +1,4 @@
 from chip8 import Chip8
-#TODO Cut Numpy dependency.
-import numpy as np
 from pathlib import Path
 import pygame
 import time
@@ -38,6 +36,10 @@ screen.fill(0)
 white = (255, 255, 255)
 black = (0,0,0)
 
+#The entire screen is redrawn every time that the CPU calls
+#for the screen to be updated. This is not particuarly efficient
+#as really only new information need to be drawn, but it's a 
+#64x32 display so it doesn't really matter.
 def pygame_display(array):
     pixel_array = pygame.PixelArray(w)
     color = white
@@ -61,11 +63,11 @@ def pygame_display(array):
 chip8.initialize()
 chip8.loadGame(rom)
 
-# Keys:
-# 1 2 3 4
-# q w e r
-# a s d f
-# z x c v
+# Keys:    ->  Chip8 Keyboard
+# 1 2 3 4         1 2 3 C
+# q w e r         4 5 6 D
+# a s d f         7 8 9 E
+# z x c v         A 0 B F
 
 then = time.time()
 
@@ -87,10 +89,12 @@ while running:
         if keys[keys_to_check[i]]:
             chip8.key[i] = 1
 
+    #Event loop to allow for graceful exit of the game.
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-
+    
+    #A delta time is used to manage the speed at which the CPU runs.
     now = time.time()
     delta = (now - then) 
 
@@ -98,9 +102,13 @@ while running:
         then = time.time()
         chip8.emulateCycle()
 
+        #Keypresses are not cleared until after the next CPU cycle. 
+        #Due to this, any keypresses made inbetween CPU cycles will 
+        #be held until the next cycle completes.
         for i in range(16):
             chip8.key[i] = 0
 
+    #Draws the screen.
     if (chip8.drawFlag):
         pygame_display(chip8.gfx)
         chip8.drawFlag = False
