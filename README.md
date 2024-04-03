@@ -1,5 +1,5 @@
 # PythonC8
-Quick and dirty Chip-8 Emulator written in python and using pygame.
+Quick and dirty Chip-8 Emulator written in python, using pygame.
 
 Requires python version 3.10 or higher due to the use of match (switch statements).
 
