@@ -2,6 +2,7 @@ from chip8 import Chip8
 from pathlib import Path
 import pygame
 import time
+import sys
 
 """
 
@@ -12,8 +13,24 @@ Memory Map:
 
 """
 
+#Get rom location
+
+args_count = len(sys.argv)
+
+if (args_count > 2):
+    print(f"One argument expected, got {args_count - 1}. Exiting.")
+    exit()
+elif (args_count == 1):
+    print("No rom provided. Exiting.")
+    exit()
+else:
+    rom_path = Path(sys.argv[1])
+
+if not rom_path.is_file():
+    print("Rom could not be found at the provided filepath")
+    exit()
+
 #Load rom
-rom_path = Path("1-chip8-logo.ch8")
 rom = ""
 
 with open(rom_path, "rb") as f:
@@ -47,6 +64,9 @@ def pygame_display(array):
     pixel_array = pygame.PixelArray(w)
     color = white
 
+    #This is actually rather slow, but it doesn't matter in the case of 
+    #updating a 64x32 screen. A more ideal solution would be having a way 
+    #to only update changed pixels.
     for y in range(32):
         for x in range(64):
             if (array[x + (y * 64)] == 1):
@@ -102,6 +122,8 @@ while running:
     delta = (now - then) 
 
     #Delta of 0.0018 because the target is 540 cycles / second or one cycle ever 1.8ms / 0.0018ms.
+    #DeltaTime is used to target a specific refresh rate / CPU instructions will only be executed if 
+    #1.8ms has passed since execution of the last instruction started.
     if (delta >= 0.0018):
         then = time.time()
         chip8.emulateCycle()

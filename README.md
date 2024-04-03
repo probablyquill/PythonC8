@@ -3,6 +3,17 @@ Quick and dirty Chip-8 Emulator written in python and using pygame.
 
 Requires python version 3.10 or higher due to the use of match (switch statements).
 
+If this is a project you would like to undertake for yourself, I primarily used these resources:
+
+[Chip-8 - Wikipedia](https://en.wikipedia.org/wiki/CHIP-8)
+
+[Cowgod's Chip-8 Technical Reference](http://devernay.free.fr/hacks/chip8/C8TECH10.HTM)
+
+[Timendus' Chip-8 Test Suite](https://github.com/Timendus/chip8-test-suite)
+
+[How to write an emulator (CHIP-8 interpreter) by Laurence Muller](https://multigesture.net/articles/how-to-write-an-emulator-chip-8-interpreter/)
+
+
 ## Install guide:
 I really wouldn't recommend running this, but if you want to, the only required package is pygame.
 ```bash
@@ -10,11 +21,11 @@ pip3 install pygame
 ```
 
 ## Launch:
-The location of the rom file can be set on line 18 of the run.py file.
+The location of the rom file must be given as a command line argument.
 
-With the rom file set, and the rom placed in the same directory as the run.py file, launch the emulator using the following commant.
+Launch the emulator using the following command.
 ```bash
-python3 ./run.py
+python3 ./run.py rom_file_path.ch8
 ```
 
 ## Licence
