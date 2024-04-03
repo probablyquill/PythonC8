@@ -15,7 +15,7 @@ If this is a project you would like to undertake for yourself, I primarily used 
 
 
 ## Install guide:
-I really wouldn't recommend running this, but if you want to, the only required package is pygame.
+The only dependency required for this project is pygame.
 ```bash
 pip3 install pygame
 ```
